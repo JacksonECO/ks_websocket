@@ -1,39 +1,61 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+This library was built to facilitate the use of `WebSocket` and `Socket`, both client and server. For that, the same interface was created and the necessary implementations were carried out using `dart:io` and `dart:html`.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+In this way it is possible to program for web and android (for example), with the same code, without worrying about importing `dart:html` for `io` devices.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+# Example
 
 ```dart
-const like = 'sample';
+final server = await KsSocketServer.bind(ipHost, ipPort);
+
+server.listerConnection((clientAction) => clientAction.copyWith(
+    listerMessage: (message, data) {
+        print('listerMessage: $data');
+    },
+    onClose: (message) {
+        print('onClose');
+    },
+    onConnection: (_) => print('New Connection'),
+));
+
+
+final client = await KsSocket.connect(ipHost, ipPort);
+
+client.send('Hello'));
+client.send({
+    'id': 1005,
+    'user': 'name',
+}));
+await Future.delayed(const Duration(seconds: 1));
+await client.close();
+
 ```
 
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+# Upcoming Versions:
+
+- Implement the WebSocket server;
+- Create unit tests;
+- Develop a test application;
+
+
+# Additional information
+
+Feel Free to request any missing features or report issues [here](https://github.com/JacksonECO/ks_websocket/issues).
+
+
+
+
+<!-- pt-br
+Esta biblioteca foi construída para facilitar a utilização de `WebSocket` e `Socket`, tanto o cliente quanto o servidor. Para isso foi criado uma mesma interface e realizados as devidas implementações utilizando o `dart:io` e `dart:html`. 
+
+Desde modo é possível programar para web e android ( por exemplo), com o mesmo código, sem se preocupar com o import do `dart:html` para dispositivos `io`.
+
+
+# Próximas Versões:
+
+- Implementar o server do WebSocket;
+- Criar testes unitários;
+- Desenvolver um aplicativo de teste;
+-->

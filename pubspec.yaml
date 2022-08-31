@@ -1,7 +1,9 @@
 name: ks_websocket
 description: WebSocket simples for multiplatform.
-version: 0.0.1
-homepage:
+version: 1.0.0
+# homepage:
+repository: https://github.com/JacksonECO/ks_websocket
+issue_tracker: https://github.com/JacksonECO/ks_websocket/issues
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
